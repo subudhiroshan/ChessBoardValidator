@@ -81,4 +81,9 @@ public class ChessUtility {
                 ((abs(A.getY() - B.getY()) == 2) && (abs(A.getX() - B.getX()) == 1));
     }
 
+    public static TeamColor otherTeamColor(TeamColor teamColor) {
+        if (teamColor.equals(TeamColor.BLACK)) return TeamColor.WHITE;
+        if (teamColor.equals(TeamColor.WHITE)) return TeamColor.BLACK;
+    }
+
 }
