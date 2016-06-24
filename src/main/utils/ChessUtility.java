@@ -13,17 +13,17 @@ public class ChessUtility {
     public static boolean didIMove(Coord A, Coord B) {
         double distance = sqrt((pow(abs(A.getX() - B.getX()), 2)) + (pow(abs(A.getY() - B.getY()), 2)));
 
-        return (distance == 0.0);
+        return (distance != 0.0);
     }
 
     public static boolean isDiagonalMove(Coord A, Coord B) {
 
-        return (abs(A.getX() - B.getX()) == abs(A.getY() - B.getY()));
+        return (didIMove(A, B) && (abs(A.getX() - B.getX()) == abs(A.getY() - B.getY())));
     }
 
     public static boolean isStraightMove(Coord A, Coord B) {
 
-        return (A.getX() == B.getX()) || (A.getY() == B.getY());
+        return (didIMove(A, B) && ((A.getX() == B.getX()) || (A.getY() == B.getY())));
     }
 
     private static boolean isSingleStraightMove(Coord A, Coord B) {
@@ -77,8 +77,9 @@ public class ChessUtility {
 
     public static boolean is2andHalfMove(Coord A, Coord B) {
 
-        return ((abs(A.getX() - B.getX()) == 2) && (abs(A.getY() - B.getY()) == 1)) ||
-                ((abs(A.getY() - B.getY()) == 2) && (abs(A.getX() - B.getX()) == 1));
+        return didIMove(A, B) &&
+                (((abs(A.getX() - B.getX()) == 2) && (abs(A.getY() - B.getY()) == 1)) ||
+                ((abs(A.getY() - B.getY()) == 2) && (abs(A.getX() - B.getX()) == 1)));
     }
 
     public static TeamColor otherTeamColor(TeamColor teamColor) {
