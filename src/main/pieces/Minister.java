@@ -9,10 +9,11 @@ import static main.utils.ChessUtility.isDiagonalMove;
 /**
  * Can only move diagonally in any direction
  */
-public class Minister implements IChessPiece {
+public class Minister extends AcChessPiece {
 
     private TeamColor teamColor;
 
+    @Override
     public TeamColor getTeamColor() {
         return teamColor;
     }

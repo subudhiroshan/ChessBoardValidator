@@ -9,10 +9,11 @@ import static main.utils.ChessUtility.isStraightMove;
 /**
  * Can only move in straight lines in any direction
  */
-public class Elephant implements IChessPiece {
+public class Elephant extends AcChessPiece {
 
     private TeamColor teamColor;
 
+    @Override
     public TeamColor getTeamColor() {
         return teamColor;
     }

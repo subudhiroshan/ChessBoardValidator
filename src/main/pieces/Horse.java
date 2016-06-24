@@ -9,10 +9,11 @@ import static main.utils.ChessUtility.is2andHalfMove;
 /**
  * Can only move '2-and-half' steps in any direction
  */
-public class Horse implements IChessPiece {
+public class Horse extends AcChessPiece {
 
     private TeamColor teamColor;
 
+    @Override
     public TeamColor getTeamColor() {
         return teamColor;
     }

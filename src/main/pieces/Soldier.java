@@ -11,10 +11,11 @@ import static main.utils.ChessUtility.*;
  * Can NEVER move backward
  */
 
-public class Soldier implements IChessPiece {
+public class Soldier extends AcChessPiece {
 
     private TeamColor teamColor;
 
+    @Override
     public TeamColor getTeamColor() {
         return teamColor;
     }

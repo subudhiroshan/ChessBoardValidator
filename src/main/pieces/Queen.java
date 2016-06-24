@@ -8,10 +8,11 @@ import static main.utils.ChessUtility.*;
 /**
  * Can move diagonally or straight in any direction
  */
-public class Queen implements IChessPiece {
+public class Queen extends AcChessPiece {
 
     private TeamColor teamColor;
 
+    @Override
     public TeamColor getTeamColor() {
         return teamColor;
     }

@@ -1,6 +1,6 @@
 package main.beans;
 
-import main.pieces.IChessPiece;
+import main.pieces.AcChessPiece;
 
 /**
  * Coordinates and kind of piece on a Chess Board
@@ -8,7 +8,7 @@ import main.pieces.IChessPiece;
 public class PieceLocation {
 
     private Coord location;
-    private Class pieceType implements IChessPiece;
+    private Class<? extends AcChessPiece> pieceType;
 
     public Coord getLocation() {
         return location;
@@ -18,11 +18,11 @@ public class PieceLocation {
         this.location = location;
     }
 
-    public Class getPieceType() {
+    public Class<? extends AcChessPiece> getPieceType() {
         return pieceType;
     }
 
-    public void setPieceType(Class pieceType) {
+    public void setPieceType(Class<? extends AcChessPiece> pieceType) {
         this.pieceType = pieceType;
     }
 

@@ -16,6 +16,7 @@ public class King extends AcKingCheck {
 
     private TeamColor teamColor;
 
+    @Override
     public TeamColor getTeamColor() {
         return teamColor;
     }
@@ -29,7 +30,17 @@ public class King extends AcKingCheck {
 
         PieceLocation[] otherTeamPieceLocations = ChessBoard.getAllPieceLocations(ChessUtility.otherTeamColor(this.getTeamColor()));
         for (PieceLocation otherTeamPieceLocation : otherTeamPieceLocations) {
-            if (otherTeamPieceLocation.getPieceType().validateMove(otherTeamPieceLocation.getLocation() ,position)) {
+            AcChessPiece currentPieceType = null;
+
+            try {
+                currentPieceType = otherTeamPieceLocation.getPieceType().newInstance();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+
+            if (currentPieceType.validateMove(otherTeamPieceLocation.getLocation() ,position)) {
                 return true;
             }
         }
