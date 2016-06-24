@@ -1,5 +1,7 @@
 package main.beans;
 
+import main.pieces.IChessPiece;
+
 /**
  * Coordinates and kind of piece on a Chess Board
  */

@@ -1,7 +1,10 @@
 package main.pieces;
 
+import main.beans.ChessBoard;
 import main.beans.Coord;
+import main.beans.PieceLocation;
 import main.beans.TeamColor;
+import main.utils.ChessUtility;
 
 import static main.utils.ChessUtility.didIMove;
 import static main.utils.ChessUtility.isSingleMove;
@@ -24,7 +27,7 @@ public class King extends AcKingCheck {
     @Override
     public boolean isCheck(Coord position) {
 
-        PieceLocation[] otherTeamPieceLocations = getAllPieceLocations(ChessUtility.otherTeamColor(this.getTeamColor()));
+        PieceLocation[] otherTeamPieceLocations = ChessBoard.getAllPieceLocations(ChessUtility.otherTeamColor(this.getTeamColor()));
         for (PieceLocation otherTeamPieceLocation : otherTeamPieceLocations) {
             if (otherTeamPieceLocation.getPieceType().validateMove(otherTeamPieceLocation.getLocation() ,position)) {
                 return true;
@@ -65,7 +68,7 @@ public class King extends AcKingCheck {
             for(int j=currentY-1; j<currentY+2; j++) {
                 Coord currentLocation = new Coord(i,j);
                 if (currentLocation.validateCoord()) {
-                    possibleMoves[k++] = currentPosition;
+                    possibleMoves[k++] = currentLocation;
                 }
             }
         }

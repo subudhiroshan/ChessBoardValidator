@@ -29,7 +29,7 @@ public class Coord {
         this.y = y;
     }
 
-    boolean validateCoord() {
+    public boolean validateCoord() {
         if ((x<0 || x>7) || (y<0 || y>7)) {
             return false;
         }

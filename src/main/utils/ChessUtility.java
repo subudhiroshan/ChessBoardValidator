@@ -82,8 +82,10 @@ public class ChessUtility {
     }
 
     public static TeamColor otherTeamColor(TeamColor teamColor) {
-        if (teamColor.equals(TeamColor.BLACK)) return TeamColor.WHITE;
-        if (teamColor.equals(TeamColor.WHITE)) return TeamColor.BLACK;
+        if (teamColor.equals(TeamColor.BLACK)) {
+            return TeamColor.WHITE;
+        }
+        return TeamColor.BLACK;
     }
 
 }

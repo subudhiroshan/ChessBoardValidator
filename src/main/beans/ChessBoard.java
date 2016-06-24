@@ -5,17 +5,17 @@ package main.beans;
  */
 public class ChessBoard {
 
-    public PieceLocation[][] chessBoardState;
+    public static PieceLocation[][] chessBoardState;
 
-    public PieceLocation[][] getChessBoardState() {
+    public static PieceLocation[][] getChessBoardState() {
         return chessBoardState;
     }
 
-    public void setChessBoardState(PieceLocation[][] chessBoardState) {
+    public static void setChessBoardState(PieceLocation[][] chessBoardState) {
         this.chessBoardState = chessBoardState;
     }
 
-    public PieceLocation[] getAllPieceLocations(TeamColor team) {
+    public static PieceLocation[] getAllPieceLocations(TeamColor team) {
         private PieceLocation[] teamState = null;
         int k=0;
 
