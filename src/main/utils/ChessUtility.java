@@ -1,5 +1,6 @@
 package main.utils;
 
+import main.ChessBoardValidator;
 import main.beans.Coord;
 import main.beans.TeamColor;
 
@@ -42,34 +43,61 @@ public class ChessUtility {
         return isSingleStraightMove(A, B) || isSingleDiagonalMove(A, B);
     }
 
-    //TODO: make side selection dynamic
     public static boolean isDoubleForwardMove(Coord A, Coord B, TeamColor side) {
+        if (ChessBoardValidator.blackOn00) {
+            if (side == TeamColor.BLACK) {
+                return (A.getY() == 1 && B.getY() == 3) && (A.getX() == B.getX());
+            } else if (side == TeamColor.WHITE) {
+                return (A.getY() == 6 && B.getY() == 4) && (A.getX() == B.getX());
+            } else {
+                return false;
+            }
+        }
+
         if (side == TeamColor.BLACK) {
-            return (A.getY() == 2 && B.getY() == 4);
+            return (A.getY() == 6 && B.getY() == 4) && (A.getX() == B.getX());
         } else if (side == TeamColor.WHITE) {
-            return (A.getY() == 7 && B.getY() == 5);
+            return (A.getY() == 1 && B.getY() == 3) && (A.getX() == B.getX());
         } else {
             return false;
         }
     }
 
-    //TODO: make side selection dynamic
     public static boolean isSingleForwardMove(Coord A, Coord B, TeamColor side) {
+        if (ChessBoardValidator.blackOn00) {
+            if (side == TeamColor.BLACK) {
+                return (B.getY() - A.getY() == 1) && (A.getX() == B.getX());
+            } else if (side == TeamColor.WHITE) {
+                return (B.getY() - A.getY() == -1) && (A.getX() == B.getX());
+            } else {
+                return false;
+            }
+        }
+
         if (side == TeamColor.BLACK) {
-            return (B.getY() - A.getY() == 1);
+            return (B.getY() - A.getY() == -1) && (A.getX() == B.getX());
         } else if (side == TeamColor.WHITE) {
-            return (B.getY() - A.getY() == -1);
+            return (B.getY() - A.getY() == 1) && (A.getX() == B.getX());
         } else {
             return false;
         }
     }
 
-    //TODO: make side selection dynamic
     public static boolean isSoldierKillMove(Coord A, Coord B, TeamColor side) {
+        if (ChessBoardValidator.blackOn00) {
+            if (side == TeamColor.BLACK) {
+                return didIMove(A, B) && (B.getY() - A.getY() == abs(B.getX() - A.getX()));
+            } else if (side == TeamColor.WHITE) {
+                return didIMove(A, B) && (B.getY() - A.getY() == negateExact(abs(B.getX() - A.getX())));
+            } else {
+                return false;
+            }
+        }
+
         if (side == TeamColor.BLACK) {
-            return (B.getY() - A.getY() == abs(B.getX() - A.getX()));
+            return didIMove(A, B) && (B.getY() - A.getY() == negateExact(abs(B.getX() - A.getX())));
         } else if (side == TeamColor.WHITE) {
-            return (B.getY() - A.getY() == negateExact(abs(B.getX() - A.getX())));
+            return didIMove(A, B) && (B.getY() - A.getY() == abs(B.getX() - A.getX()));
         } else {
             return false;
         }

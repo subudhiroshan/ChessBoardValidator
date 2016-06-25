@@ -1,5 +1,6 @@
 package utils;
 
+import main.ChessBoardValidator;
 import main.beans.Coord;
 import main.beans.TeamColor;
 import org.junit.Test;
@@ -79,16 +80,155 @@ public class ChessUtilityTest {
     @Test
     public void isDoubleForwardMoveTest() throws Exception {
 
+        Coord coord1B = new Coord(3,1);
+        Coord coord2B = new Coord(5,1);
+        Coord coord3B = new Coord(5,3);
+        Coord coord4B = new Coord(4,3);
+
+        Coord coord1W = new Coord(3,1);
+        Coord coord2W = new Coord(2,6);
+        Coord coord3W = new Coord(2,4);
+        Coord coord4W = new Coord(3,4);
+
+        ChessBoardValidator.blackOn00 = true;
+
+        assertFalse(isDoubleForwardMove(coord1B, coord1B, TeamColor.BLACK));
+
+        assertTrue(isDoubleForwardMove(coord2B, coord3B, TeamColor.BLACK));
+        assertFalse(isDoubleForwardMove(coord3B, coord2B, TeamColor.BLACK));
+
+        assertFalse(isDoubleForwardMove(coord2B, coord4B, TeamColor.BLACK));
+        assertFalse(isDoubleForwardMove(coord4B, coord2B, TeamColor.BLACK));
+
+
+        assertFalse(isDoubleForwardMove(coord1W, coord1W, TeamColor.WHITE));
+
+        assertTrue(isDoubleForwardMove(coord2W, coord3W, TeamColor.WHITE));
+        assertFalse(isDoubleForwardMove(coord3W, coord2W, TeamColor.WHITE));
+
+        assertFalse(isDoubleForwardMove(coord2W, coord4W, TeamColor.WHITE));
+        assertFalse(isDoubleForwardMove(coord4W, coord2W, TeamColor.WHITE));
+
+        ChessBoardValidator.blackOn00 = false;
+
+        assertFalse(isDoubleForwardMove(coord1B, coord1B, TeamColor.WHITE));
+
+        assertTrue(isDoubleForwardMove(coord2B, coord3B, TeamColor.WHITE));
+        assertFalse(isDoubleForwardMove(coord3B, coord2B, TeamColor.WHITE));
+
+        assertFalse(isDoubleForwardMove(coord2B, coord4B, TeamColor.WHITE));
+        assertFalse(isDoubleForwardMove(coord4B, coord2B, TeamColor.WHITE));
+
+
+        assertFalse(isDoubleForwardMove(coord1W, coord1W, TeamColor.BLACK));
+
+        assertTrue(isDoubleForwardMove(coord2W, coord3W, TeamColor.BLACK));
+        assertFalse(isDoubleForwardMove(coord3W, coord2W, TeamColor.BLACK));
+
+        assertFalse(isDoubleForwardMove(coord2W, coord4W, TeamColor.BLACK));
+        assertFalse(isDoubleForwardMove(coord4W, coord2W, TeamColor.BLACK));
     }
 
     @Test
     public void isSingleForwardMoveTest() throws Exception {
+        Coord coord1B = new Coord(3,1);
+        Coord coord2B = new Coord(5,1);
+        Coord coord3B = new Coord(5,2);
+        Coord coord4B = new Coord(4,2);
 
+        Coord coord1W = new Coord(3,1);
+        Coord coord2W = new Coord(2,6);
+        Coord coord3W = new Coord(2,5);
+        Coord coord4W = new Coord(3,5);
+
+        ChessBoardValidator.blackOn00 = true;
+
+        assertFalse(isSingleForwardMove(coord1B, coord1B, TeamColor.BLACK));
+
+        assertTrue(isSingleForwardMove(coord2B, coord3B, TeamColor.BLACK));
+        assertFalse(isSingleForwardMove(coord3B, coord2B, TeamColor.BLACK));
+
+        assertFalse(isSingleForwardMove(coord2B, coord4B, TeamColor.BLACK));
+        assertFalse(isSingleForwardMove(coord4B, coord2B, TeamColor.BLACK));
+
+
+        assertFalse(isSingleForwardMove(coord1W, coord1W, TeamColor.WHITE));
+
+        assertTrue(isSingleForwardMove(coord2W, coord3W, TeamColor.WHITE));
+        assertFalse(isSingleForwardMove(coord3W, coord2W, TeamColor.WHITE));
+
+        assertFalse(isSingleForwardMove(coord2W, coord4W, TeamColor.WHITE));
+        assertFalse(isSingleForwardMove(coord4W, coord2W, TeamColor.WHITE));
+
+        ChessBoardValidator.blackOn00 = false;
+
+        assertFalse(isSingleForwardMove(coord1B, coord1B, TeamColor.WHITE));
+
+        assertTrue(isSingleForwardMove(coord2B, coord3B, TeamColor.WHITE));
+        assertFalse(isSingleForwardMove(coord3B, coord2B, TeamColor.WHITE));
+
+        assertFalse(isSingleForwardMove(coord2B, coord4B, TeamColor.WHITE));
+        assertFalse(isSingleForwardMove(coord4B, coord2B, TeamColor.WHITE));
+
+
+        assertFalse(isSingleForwardMove(coord1W, coord1W, TeamColor.BLACK));
+
+        assertTrue(isSingleForwardMove(coord2W, coord3W, TeamColor.BLACK));
+        assertFalse(isSingleForwardMove(coord3W, coord2W, TeamColor.BLACK));
+
+        assertFalse(isSingleForwardMove(coord2W, coord4W, TeamColor.BLACK));
+        assertFalse(isSingleForwardMove(coord4W, coord2W, TeamColor.BLACK));
     }
 
     @Test
     public void isSoldierKillMoveTest() throws Exception {
+        Coord coord1B = new Coord(3,1);
+        Coord coord2B = new Coord(3,2);
+        Coord coord3B = new Coord(4,3);
+        Coord coord4B = new Coord(3,3);
 
+        Coord coord1W = new Coord(3,1);
+        Coord coord2W = new Coord(5,5);
+        Coord coord3W = new Coord(4,4);
+        Coord coord4W = new Coord(5,4);
+
+        ChessBoardValidator.blackOn00 = true;
+
+        assertFalse(isSoldierKillMove(coord1B, coord1B, TeamColor.BLACK));
+
+        assertTrue(isSoldierKillMove(coord2B, coord3B, TeamColor.BLACK));
+        assertFalse(isSoldierKillMove(coord3B, coord2B, TeamColor.BLACK));
+
+        assertFalse(isSoldierKillMove(coord2B, coord4B, TeamColor.BLACK));
+        assertFalse(isSoldierKillMove(coord4B, coord2B, TeamColor.BLACK));
+
+
+        assertFalse(isSoldierKillMove(coord1W, coord1W, TeamColor.WHITE));
+
+        assertTrue(isSoldierKillMove(coord2W, coord3W, TeamColor.WHITE));
+        assertFalse(isSoldierKillMove(coord3W, coord2W, TeamColor.WHITE));
+
+        assertFalse(isSoldierKillMove(coord2W, coord4W, TeamColor.WHITE));
+        assertFalse(isSoldierKillMove(coord4W, coord2W, TeamColor.WHITE));
+
+        ChessBoardValidator.blackOn00 = false;
+
+        assertFalse(isSoldierKillMove(coord1B, coord1B, TeamColor.WHITE));
+
+        assertTrue(isSoldierKillMove(coord2B, coord3B, TeamColor.WHITE));
+        assertFalse(isSoldierKillMove(coord3B, coord2B, TeamColor.WHITE));
+
+        assertFalse(isSoldierKillMove(coord2B, coord4B, TeamColor.WHITE));
+        assertFalse(isSoldierKillMove(coord4B, coord2B, TeamColor.WHITE));
+
+
+        assertFalse(isSoldierKillMove(coord1W, coord1W, TeamColor.BLACK));
+
+        assertTrue(isSoldierKillMove(coord2W, coord3W, TeamColor.BLACK));
+        assertFalse(isSoldierKillMove(coord3W, coord2W, TeamColor.BLACK));
+
+        assertFalse(isSoldierKillMove(coord2W, coord4W, TeamColor.BLACK));
+        assertFalse(isSoldierKillMove(coord4W, coord2W, TeamColor.BLACK));
     }
 
     @Test
