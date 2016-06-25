@@ -21,7 +21,11 @@ public class EmptyPiece extends AcChessPiece {
 
     @Override
     public boolean validateMove(Coord start, Coord end) {
-
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "   ";
     }
 }

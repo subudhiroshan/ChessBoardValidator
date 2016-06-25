@@ -24,7 +24,11 @@ public class Minister extends AcChessPiece {
 
     @Override
     public boolean validateMove(Coord start, Coord end) {
-
         return didIMove(start, end) && isDiagonalMove(start, end);
+    }
+
+    @Override
+    public String toString() {
+        return teamColor.toString().substring(0, 1) + " M";
     }
 }

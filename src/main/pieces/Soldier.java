@@ -29,4 +29,9 @@ public class Soldier extends AcChessPiece {
         return didIMove(start, end) && isDoubleForwardMove(start, end, teamColor) ||
                 isSingleForwardMove(start, end, teamColor) || isSoldierKillMove(start, end, teamColor);
     }
+
+    @Override
+    public String toString() {
+        return teamColor.toString().substring(0, 1) + " S";
+    }
 }

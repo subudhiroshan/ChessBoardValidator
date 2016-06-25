@@ -38,7 +38,6 @@ public class King extends AcKingCheck {
                 return true;
             }
         }
-
         return false;
     }
 
@@ -51,18 +50,15 @@ public class King extends AcKingCheck {
                 checkCount ++;
             }
         }
-
         return checkCount == 8;
     }
 
     @Override
     public boolean validateMove(Coord start, Coord end) {
-
         return didIMove(start, end) && isSingleMove(start, end);
-
     }
 
-    public Coord[] validMovesForKing(Coord location) {
+    private Coord[] validMovesForKing(Coord location) {
         Coord[] possibleMoves = null;
         int k=0;
 
@@ -77,8 +73,11 @@ public class King extends AcKingCheck {
                 }
             }
         }
-
         return possibleMoves;
+    }
 
+    @Override
+    public String toString() {
+        return teamColor.toString().substring(0, 1) + " K";
     }
 }

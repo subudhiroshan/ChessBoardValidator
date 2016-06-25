@@ -26,4 +26,9 @@ public class Elephant extends AcChessPiece {
     public boolean validateMove(Coord start, Coord end) {
         return didIMove(start, end) && isStraightMove(start, end);
     }
+
+    @Override
+    public String toString() {
+        return teamColor.toString().substring(0, 1) + " E";
+    }
 }
