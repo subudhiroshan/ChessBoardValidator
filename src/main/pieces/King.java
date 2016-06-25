@@ -32,13 +32,7 @@ public class King extends AcKingCheck {
         for (PieceLocation otherTeamPieceLocation : otherTeamPieceLocations) {
             AcChessPiece currentPieceType = null;
 
-            try {
-                currentPieceType = otherTeamPieceLocation.getPieceType().newInstance();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
+            currentPieceType = otherTeamPieceLocation.getPieceType();
 
             if (currentPieceType.validateMove(otherTeamPieceLocation.getLocation() ,position)) {
                 return true;

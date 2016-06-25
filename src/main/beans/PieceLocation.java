@@ -8,7 +8,7 @@ import main.pieces.AcChessPiece;
 public class PieceLocation {
 
     private Coord location;
-    private Class<? extends AcChessPiece> pieceType;
+    private AcChessPiece pieceType;
 
     public Coord getLocation() {
         return location;
@@ -18,11 +18,11 @@ public class PieceLocation {
         this.location = location;
     }
 
-    public Class<? extends AcChessPiece> getPieceType() {
+    public AcChessPiece getPieceType() {
         return pieceType;
     }
 
-    public void setPieceType(Class<? extends AcChessPiece> pieceType) {
+    public void setPieceType(AcChessPiece pieceType) {
         this.pieceType = pieceType;
     }
 
