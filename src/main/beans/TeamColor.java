@@ -5,5 +5,6 @@ package main.beans;
  */
 public enum TeamColor {
     BLACK,
-    WHITE
+    WHITE,
+    NONE
 }
