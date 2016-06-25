@@ -29,15 +29,13 @@ public class ChessBoard {
     }
 
     public static PieceLocation[] getAllPieceLocations(TeamColor team) {
-        PieceLocation[] teamState = null;
+        PieceLocation[] teamState = new PieceLocation[16];
         int k=0;
 
         for(int i=0; i<8; i++) {
             for(int j=0; j<8; j++) {
-
                 PieceLocation currentPieceLocation = chessBoardState[i][j];
                 AcChessPiece currentPieceType = currentPieceLocation.getPieceType();
-
                 if (currentPieceType.getTeamColor().equals(team)) {
                     teamState[k++] = chessBoardState[i][j];
                 }
