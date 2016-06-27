@@ -23,11 +23,13 @@ public class ChessBoardTest {
         setChessBoardState(ChessTestUtility.getInitialChessBoardState(true));
 
         PieceLocation[] blackLocationsTrue = getAllPieceLocations(TeamColor.BLACK);
+        assertTrue(blackLocationsTrue.length == 16);
         for (PieceLocation blackLocation: blackLocationsTrue) {
             assertTrue(blackLocation.getLocation().getY()<2);
         }
 
         PieceLocation[] whiteLocationsTrue = getAllPieceLocations(TeamColor.WHITE);
+        assertTrue(whiteLocationsTrue.length == 16);
         for (PieceLocation whiteLocation: whiteLocationsTrue) {
             assertTrue(whiteLocation.getLocation().getY()>5);
         }
@@ -35,11 +37,13 @@ public class ChessBoardTest {
         setChessBoardState(ChessTestUtility.getInitialChessBoardState(false));
 
         PieceLocation[] blackLocationsFalse = getAllPieceLocations(TeamColor.BLACK);
+        assertTrue(blackLocationsFalse.length == 16);
         for (PieceLocation blackLocation: blackLocationsFalse) {
             assertTrue(blackLocation.getLocation().getY()>5);
         }
 
         PieceLocation[] whiteLocationsFalse = getAllPieceLocations(TeamColor.WHITE);
+        assertTrue(whiteLocationsFalse.length == 16);
         for (PieceLocation whiteLocation: whiteLocationsFalse) {
             assertTrue(whiteLocation.getLocation().getY()<2);
         }
