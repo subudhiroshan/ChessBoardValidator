@@ -1,5 +1,6 @@
 package pieces;
 
+import main.InvalidCoordException;
 import main.beans.Coord;
 import main.pieces.Minister;
 import org.junit.Assert;
@@ -12,7 +13,7 @@ public class MinisterTest {
     private Minister aMinister = new Minister();
 
     @Test
-    public void validateMinisterMoveTestHP() {
+    public void validateMinisterMoveTestHP() throws InvalidCoordException {
         Coord coord1 = new Coord(2,3);
         Coord coord2 = new Coord(4,1);
         Coord coord3 = new Coord(3,5);
@@ -26,7 +27,7 @@ public class MinisterTest {
     }
 
     @Test
-    public void validateMinisterMoveTestInvalid() {
+    public void validateMinisterMoveTestInvalid() throws InvalidCoordException {
         Coord coord1 = new Coord(2,3);
         Coord coord2 = new Coord(4,3);
         Coord coord3 = new Coord(1,3);

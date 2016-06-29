@@ -1,5 +1,6 @@
 package pieces;
 
+import main.InvalidCoordException;
 import main.beans.Coord;
 import main.pieces.Horse;
 import main.pieces.Queen;
@@ -15,7 +16,7 @@ public class QueenTest {
     private Queen aQueen = new Queen();
 
     @Test
-    public void validateQueenMoveTestHP() {
+    public void validateQueenMoveTestHP() throws InvalidCoordException {
         Coord coord1 = new Coord(2,3);
         Coord coord2 = new Coord(4,3);
         Coord coord3 = new Coord(1,3);
@@ -37,7 +38,7 @@ public class QueenTest {
     }
 
     @Test
-    public void validateQueenMoveTestInvalid() {
+    public void validateQueenMoveTestInvalid() throws InvalidCoordException {
         Coord coord1 = new Coord(2,3);
         Coord coord2 = new Coord(3,1);
         Coord coord3 = new Coord(3,5);

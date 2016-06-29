@@ -1,5 +1,6 @@
 package pieces;
 
+import main.InvalidCoordException;
 import main.beans.Coord;
 import main.pieces.Elephant;
 import org.junit.Assert;
@@ -12,7 +13,7 @@ public class ElephantTest {
     private Elephant anElephant = new Elephant();
 
     @Test
-    public void validateElephantMoveTestHP() {
+    public void validateElephantMoveTestHP() throws InvalidCoordException {
         Coord coord1 = new Coord(2,3);
         Coord coord2 = new Coord(4,3);
         Coord coord3 = new Coord(1,3);
@@ -26,7 +27,7 @@ public class ElephantTest {
     }
 
     @Test
-    public void validateElephantMoveTestInvalid() {
+    public void validateElephantMoveTestInvalid() throws InvalidCoordException {
         Coord coord1 = new Coord(2,3);
         Coord coord2 = new Coord(4,1);
         Coord coord3 = new Coord(3,5);

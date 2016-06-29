@@ -1,5 +1,6 @@
 package testUtils;
 
+import main.InvalidCoordException;
 import main.beans.Coord;
 import main.beans.PieceLocation;
 import main.beans.TeamColor;
@@ -13,7 +14,7 @@ import static java.lang.Math.floor;
  */
 public class ChessTestUtility {
 
-    public static PieceLocation[][] getInitialChessBoardState(boolean blackon00) {
+    public static PieceLocation[][] getInitialChessBoardState(boolean blackon00) throws InvalidCoordException {
         PieceLocation[][] initialChessBoard = initializeChessBoard();
 
         if (blackon00) {
@@ -30,7 +31,7 @@ public class ChessTestUtility {
         return initialChessBoard;
     }
 
-    private static PieceLocation[][] initializeChessBoard() {
+    private static PieceLocation[][] initializeChessBoard() throws InvalidCoordException {
         PieceLocation[][] blankChessBoard = new PieceLocation[8][8];
 
         //initialize board with empty pieces
@@ -48,7 +49,7 @@ public class ChessTestUtility {
         return blankChessBoard;
     }
 
-    private static PieceLocation[] placeAllSoldiersInOneRow(int rowNum, TeamColor teamColor) {
+    private static PieceLocation[] placeAllSoldiersInOneRow(int rowNum, TeamColor teamColor) throws InvalidCoordException {
         PieceLocation[] soldierRow = new PieceLocation[8];
 
         for(int i=0; i<8; i++) {
@@ -65,7 +66,7 @@ public class ChessTestUtility {
         return soldierRow;
     }
 
-    private static PieceLocation[] placeNonSoldiersInOneRow(int rowNum, TeamColor teamColor, boolean blackOn00) {
+    private static PieceLocation[] placeNonSoldiersInOneRow(int rowNum, TeamColor teamColor, boolean blackOn00) throws InvalidCoordException {
         PieceLocation[] nonSoldierRow = new PieceLocation[8];
 
         //initializing all the pieces

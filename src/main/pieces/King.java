@@ -1,5 +1,6 @@
 package main.pieces;
 
+import main.InvalidCoordException;
 import main.beans.ChessBoard;
 import main.beans.Coord;
 import main.beans.PieceLocation;
@@ -42,7 +43,7 @@ public class King extends AcKingCheck {
     }
 
     @Override
-    public boolean isCheckMate(Coord position) {
+    public boolean isCheckMate(Coord position) throws InvalidCoordException {
 
         int checkCount = 0;
         for (Coord possibleLocation : validMovesForKing(position)) {
@@ -58,7 +59,7 @@ public class King extends AcKingCheck {
         return didIMove(start, end) && isSingleMove(start, end);
     }
 
-    private Coord[] validMovesForKing(Coord location) {
+    private Coord[] validMovesForKing(Coord location) throws InvalidCoordException {
         Coord[] possibleMoves = null;
         int k=0;
 

@@ -1,5 +1,6 @@
 package pieces;
 
+import main.InvalidCoordException;
 import main.beans.Coord;
 import main.pieces.Elephant;
 import main.pieces.EmptyPiece;
@@ -15,7 +16,7 @@ public class EmptyPieceTest {
     private EmptyPiece someEmptyPiece = new EmptyPiece();
 
     @Test
-    public void validateElephantMoveTestHP() {
+    public void validateElephantMoveTestHP() throws InvalidCoordException {
         Coord coord1 = new Coord(2,3);
         Coord coord2 = new Coord(4,5);
 

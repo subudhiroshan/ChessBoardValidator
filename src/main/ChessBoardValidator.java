@@ -10,7 +10,12 @@ public class ChessBoardValidator {
     public static void main(String[] args) {
 	    System.out.println("Hello ChessBoardValidator!!!");
 
-        PieceLocation[][] newChessBoard = ChessTestUtility.getInitialChessBoardState(blackOn00);
-        ChessTestUtility.printChessBoard(newChessBoard);
+        try {
+            PieceLocation[][] newChessBoard =
+                    ChessTestUtility.getInitialChessBoardState(blackOn00);
+            ChessTestUtility.printChessBoard(newChessBoard);
+        } catch (InvalidCoordException ice) {
+            System.out.println("Invalid coordinates used! " + ice.getMessage());
+        }
     }
 }

@@ -1,5 +1,6 @@
 package main.pieces;
 
+import main.InvalidCoordException;
 import main.beans.Coord;
 
 /**
@@ -7,5 +8,5 @@ import main.beans.Coord;
  */
 public abstract class AcKingCheck extends AcChessPiece {
     public abstract boolean isCheck(Coord location);
-    public abstract boolean isCheckMate(Coord location);
+    public abstract boolean isCheckMate(Coord location) throws InvalidCoordException;
 }

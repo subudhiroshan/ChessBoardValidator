@@ -1,5 +1,7 @@
 package main.beans;
 
+import main.InvalidCoordException;
+
 /**
  * Coordinates of a piece on a Chess Board
  */
@@ -8,9 +10,13 @@ public class Coord {
     private int x;
     private int y;
 
-    public Coord(int x, int y) {
+    public Coord(int x, int y) throws InvalidCoordException {
         this.x = x;
         this.y = y;
+
+        if (!this.validateCoord()) {
+            throw new InvalidCoordException("Please check the provided coordinates");
+        }
     }
 
     public int getX() {
@@ -19,14 +25,6 @@ public class Coord {
 
     public int getY() {
         return y;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
     }
 
     public boolean validateCoord() {
