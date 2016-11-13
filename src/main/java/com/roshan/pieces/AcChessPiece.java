@@ -8,5 +8,6 @@ import com.roshan.beans.TeamColor;
  */
 public abstract class AcChessPiece implements IChessPiece{
     public abstract TeamColor getTeamColor();
+    public abstract void setTeamColor(TeamColor teamColor);
     public abstract boolean validateMove(Coord start, Coord end);
 }

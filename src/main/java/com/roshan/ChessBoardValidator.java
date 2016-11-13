@@ -3,7 +3,9 @@ package com.roshan;
 import com.roshan.beans.ChessBoard;
 import com.roshan.beans.Coord;
 import com.roshan.beans.PieceLocation;
+import com.roshan.beans.TeamColor;
 import com.roshan.exception.InvalidCoordException;
+import com.roshan.pieces.AcChessPiece;
 import com.roshan.pieces.EmptyPiece;
 import com.roshan.utils.ChessBoardUtility;
 import com.roshan.utils.ChessUtility;
@@ -17,42 +19,53 @@ public class ChessBoardValidator {
     public static ChessBoard chessBoard;
 
     public static void main(String[] args) {
-	    System.out.println("Hello ChessBoardValidator!!!");
+        TeamColor teamTurn = TeamColor.BLACK;
+        System.out.println("Welcome to ChessBoardValidator!!!\n");
 
         try {
             chessBoard = new ChessBoard();
             chessBoard.setChessBoardState(ChessBoardUtility.getInitialChessBoardState(blackOn00));
             ChessUtility.printChessBoard(chessBoard);
 
-            System.out.println("Please make your move:");
-            System.out.println("Start location(x,y) - ");
-            String startLoc = scanner.nextLine();
-            Coord startCoord = coordFromString(startLoc);
+            while(true) {
 
-            PieceLocation identifiedPiece = chessBoard.getPieceAtLocation(startCoord);
-            System.out.println("Identified piece is " + identifiedPiece.getPieceType().toString());
-            System.out.println("End location(x,y) - ");
-            String endLoc = scanner.nextLine();
-            Coord endCoord = coordFromString(endLoc);
+                System.out.println(teamTurn.toString() + " Please make your move:");
+                System.out.println("Start location(x,y) - ");
+                String startLoc = scanner.nextLine();
+                Coord startCoord = coordFromString(startLoc);
+                PieceLocation identifiedPiece = chessBoard.getPieceAtLocation(startCoord);
+                AcChessPiece identifiedPiecetType = identifiedPiece.getPieceType();
+                System.out.println("Identified piece is " + identifiedPiecetType.toString());
 
-            if (identifiedPiece.getPieceType().validateMove(startCoord, endCoord)) {
-                System.out.println("Valid move. Testing for checkmate...");
-                identifiedPiece.setLocation(endCoord);
-                PieceLocation emptyPiece = new PieceLocation();
-                emptyPiece.setPieceType(new EmptyPiece());
-                emptyPiece.setLocation(startCoord);
-                chessBoard.setPieceAtLocation(emptyPiece);
-                chessBoard.setPieceAtLocation(identifiedPiece);
+                if (!identifiedPiecetType.getTeamColor().equals(teamTurn)) {
+                    System.out.println(String.format("Wrong move. Please move a %s piece!\n", teamTurn.toString()));
+                    continue;
+                }
+
+                System.out.println("End location(x,y) - ");
+                String endLoc = scanner.nextLine();
+                Coord endCoord = coordFromString(endLoc);
+
+                if (identifiedPiece.getPieceType().validateMove(startCoord, endCoord)) {
+                    System.out.println("Valid move.\n");
+                    teamTurn = ChessUtility.otherTeamColor(teamTurn);
+                    identifiedPiece.setLocation(endCoord);
+                    PieceLocation emptyPiece = new PieceLocation();
+                    emptyPiece.setPieceType(new EmptyPiece());
+                    emptyPiece.setLocation(startCoord);
+                    chessBoard.setPieceAtLocation(emptyPiece);
+                    chessBoard.setPieceAtLocation(identifiedPiece);
 
 //                if (chessBoard.isCheckmateOfOtherKing(identifiedPiece)) {
 //                    System.out.println("CheckMate. You Win! Congratulations!!!");
 //                    System.exit(0);
 //                }
-            } else {
-                System.out.println("Invalid move. Try again!");
-            }
+                } else {
+                    System.out.println("Invalid move. Try again!\n");
+                }
 
-            ChessUtility.printChessBoard(chessBoard);
+                ChessUtility.printChessBoard(chessBoard);
+            }
 
         } catch (InvalidCoordException ice) {
             System.out.println("Invalid coordinates used! " + ice.getMessage());
