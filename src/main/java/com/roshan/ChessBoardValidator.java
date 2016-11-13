@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class ChessBoardValidator {
 
-    public static boolean whiteOn00 = true;
+    public static boolean blackOn00 = true;
     private static Scanner scanner = new Scanner(System.in);
     public static ChessBoard chessBoard;
 
@@ -21,7 +21,7 @@ public class ChessBoardValidator {
 
         try {
             chessBoard = new ChessBoard();
-            chessBoard.setChessBoardState(ChessBoardUtility.getInitialChessBoardState(whiteOn00));
+            chessBoard.setChessBoardState(ChessBoardUtility.getInitialChessBoardState(blackOn00));
             ChessUtility.printChessBoard(chessBoard);
 
             System.out.println("Please make your move:");

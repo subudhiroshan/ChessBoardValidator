@@ -6,7 +6,7 @@ import com.roshan.beans.TeamColor;
 import com.roshan.exception.InvalidCoordException;
 import com.roshan.pieces.AcChessPiece;
 
-import static com.roshan.ChessBoardValidator.whiteOn00;
+import static com.roshan.ChessBoardValidator.blackOn00;
 import static java.lang.Math.*;
 
 /**
@@ -47,7 +47,7 @@ public class ChessUtility {
     }
 
     public static boolean isDoubleForwardMove(Coord A, Coord B, TeamColor side) {
-        if (whiteOn00) {
+        if (blackOn00) {
             if (side == TeamColor.BLACK) {
                 return (A.getY() == 1 && B.getY() == 3) && (A.getX() == B.getX());
             } else if (side == TeamColor.WHITE) {
@@ -67,7 +67,7 @@ public class ChessUtility {
     }
 
     public static boolean isSingleForwardMove(Coord A, Coord B, TeamColor side) {
-        if (whiteOn00) {
+        if (blackOn00) {
             if (side == TeamColor.BLACK) {
                 return (B.getY() - A.getY() == 1) && (A.getX() == B.getX());
             } else if (side == TeamColor.WHITE) {
@@ -87,7 +87,7 @@ public class ChessUtility {
     }
 
     public static boolean isSoldierKillMove(Coord A, Coord B, TeamColor side) {
-        if (whiteOn00) {
+        if (blackOn00) {
             if (side == TeamColor.BLACK) {
                 return didIMove(A, B) && (B.getY() - A.getY() == abs(B.getX() - A.getX()));
             } else if (side == TeamColor.WHITE) {
@@ -121,10 +121,11 @@ public class ChessUtility {
     }
 
     public static void printChessBoard(ChessBoard chessBoard) {
-        System.out.println("---------------------------------");
+        System.out.println("Y\\X 0   1   2   3   4   5   6   7 ");
+        System.out.println("-----------------------------------");
 
         for(int i=0; i<8; i++) {
-            System.out.print("|");
+            System.out.print(i + " |");
             for(int j=0; j<8; j++) {
                 AcChessPiece currentPiece = chessBoard.getChessBoardState()[i][j].getPieceType();
 
@@ -141,14 +142,14 @@ public class ChessUtility {
                     System.out.print(currentPiece.toString().replace(' ', '.') + "|");
                 }
             }
-            System.out.println("\n---------------------------------");
+            System.out.println("\n-----------------------------------");
         }
     }
 
     private static boolean isBlackSquare(Coord currentCoord) {
         if ((currentCoord.getX() + currentCoord.getY())%2 == 0)
-            return whiteOn00;
+            return blackOn00;
         else
-            return !whiteOn00;
+            return !blackOn00;
     }
 }
