@@ -1,12 +1,12 @@
 package com.roshan.utils;
 
+import com.roshan.beans.ChessBoard;
 import com.roshan.beans.Coord;
-import com.roshan.beans.PieceLocation;
 import com.roshan.beans.TeamColor;
 import com.roshan.exception.InvalidCoordException;
 import com.roshan.pieces.AcChessPiece;
 
-import static com.roshan.ChessBoardValidator.blackOn00;
+import static com.roshan.ChessBoardValidator.whiteOn00;
 import static java.lang.Math.*;
 
 /**
@@ -47,7 +47,7 @@ public class ChessUtility {
     }
 
     public static boolean isDoubleForwardMove(Coord A, Coord B, TeamColor side) {
-        if (blackOn00) {
+        if (whiteOn00) {
             if (side == TeamColor.BLACK) {
                 return (A.getY() == 1 && B.getY() == 3) && (A.getX() == B.getX());
             } else if (side == TeamColor.WHITE) {
@@ -67,7 +67,7 @@ public class ChessUtility {
     }
 
     public static boolean isSingleForwardMove(Coord A, Coord B, TeamColor side) {
-        if (blackOn00) {
+        if (whiteOn00) {
             if (side == TeamColor.BLACK) {
                 return (B.getY() - A.getY() == 1) && (A.getX() == B.getX());
             } else if (side == TeamColor.WHITE) {
@@ -87,7 +87,7 @@ public class ChessUtility {
     }
 
     public static boolean isSoldierKillMove(Coord A, Coord B, TeamColor side) {
-        if (blackOn00) {
+        if (whiteOn00) {
             if (side == TeamColor.BLACK) {
                 return didIMove(A, B) && (B.getY() - A.getY() == abs(B.getX() - A.getX()));
             } else if (side == TeamColor.WHITE) {
@@ -120,13 +120,13 @@ public class ChessUtility {
         return TeamColor.BLACK;
     }
 
-    public static void printChessBoard(PieceLocation[][] chessBoardState) {
+    public static void printChessBoard(ChessBoard chessBoard) {
         System.out.println("---------------------------------");
 
         for(int i=0; i<8; i++) {
             System.out.print("|");
             for(int j=0; j<8; j++) {
-                AcChessPiece currentPiece = chessBoardState[i][j].getPieceType();
+                AcChessPiece currentPiece = chessBoard.getChessBoardState()[i][j].getPieceType();
 
                 Coord currentCoord = null;
                 try {
@@ -147,8 +147,8 @@ public class ChessUtility {
 
     private static boolean isBlackSquare(Coord currentCoord) {
         if ((currentCoord.getX() + currentCoord.getY())%2 == 0)
-            return blackOn00;
+            return whiteOn00;
         else
-            return !blackOn00;
+            return !whiteOn00;
     }
 }

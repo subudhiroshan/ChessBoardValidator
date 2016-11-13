@@ -1,46 +1,47 @@
 package com.roshan.beans;
 
-import org.junit.Test;
 import com.roshan.utils.ChessBoardUtility;
+import org.junit.Test;
 
-import static com.roshan.beans.ChessBoard.setChessBoardState;
-import static com.roshan.beans.ChessBoard.getAllPieceLocations;
 import static org.junit.Assert.assertTrue;
 
 /**
  * Tests for ChessBoard class
  */
 public class ChessBoardTest {
+
+    private ChessBoard chessBoard = new ChessBoard();
+
     @Test
     public void setChessBoardStateTest() throws Exception {
-        assertTrue(setChessBoardState(ChessBoardUtility.getInitialChessBoardState(true)));
+        assertTrue(chessBoard.setChessBoardState(ChessBoardUtility.getInitialChessBoardState(true)));
     }
 
     @Test
     public void getAllPieceLocationsTest() throws Exception {
-        setChessBoardState(ChessBoardUtility.getInitialChessBoardState(true));
+        chessBoard.setChessBoardState(ChessBoardUtility.getInitialChessBoardState(true));
 
-        PieceLocation[] blackLocationsTrue = getAllPieceLocations(TeamColor.BLACK);
+        PieceLocation[] blackLocationsTrue = chessBoard.getAllPieceLocations(TeamColor.BLACK);
         assertTrue(blackLocationsTrue.length == 16);
         for (PieceLocation blackLocation: blackLocationsTrue) {
             assertTrue(blackLocation.getLocation().getY()<2);
         }
 
-        PieceLocation[] whiteLocationsTrue = getAllPieceLocations(TeamColor.WHITE);
+        PieceLocation[] whiteLocationsTrue = chessBoard.getAllPieceLocations(TeamColor.WHITE);
         assertTrue(whiteLocationsTrue.length == 16);
         for (PieceLocation whiteLocation: whiteLocationsTrue) {
             assertTrue(whiteLocation.getLocation().getY()>5);
         }
 
-        setChessBoardState(ChessBoardUtility.getInitialChessBoardState(false));
+        chessBoard.setChessBoardState(ChessBoardUtility.getInitialChessBoardState(false));
 
-        PieceLocation[] blackLocationsFalse = getAllPieceLocations(TeamColor.BLACK);
+        PieceLocation[] blackLocationsFalse = chessBoard.getAllPieceLocations(TeamColor.BLACK);
         assertTrue(blackLocationsFalse.length == 16);
         for (PieceLocation blackLocation: blackLocationsFalse) {
             assertTrue(blackLocation.getLocation().getY()>5);
         }
 
-        PieceLocation[] whiteLocationsFalse = getAllPieceLocations(TeamColor.WHITE);
+        PieceLocation[] whiteLocationsFalse = chessBoard.getAllPieceLocations(TeamColor.WHITE);
         assertTrue(whiteLocationsFalse.length == 16);
         for (PieceLocation whiteLocation: whiteLocationsFalse) {
             assertTrue(whiteLocation.getLocation().getY()<2);

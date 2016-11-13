@@ -90,7 +90,7 @@ public class ChessUtilityTest {
         Coord coord3W = new Coord(2,4);
         Coord coord4W = new Coord(3,4);
 
-        ChessBoardValidator.blackOn00 = true;
+        ChessBoardValidator.whiteOn00 = true;
 
         assertFalse(isDoubleForwardMove(coord1B, coord1B, TeamColor.BLACK));
 
@@ -109,7 +109,7 @@ public class ChessUtilityTest {
         assertFalse(isDoubleForwardMove(coord2W, coord4W, TeamColor.WHITE));
         assertFalse(isDoubleForwardMove(coord4W, coord2W, TeamColor.WHITE));
 
-        ChessBoardValidator.blackOn00 = false;
+        ChessBoardValidator.whiteOn00 = false;
 
         assertFalse(isDoubleForwardMove(coord1B, coord1B, TeamColor.WHITE));
 
@@ -141,7 +141,7 @@ public class ChessUtilityTest {
         Coord coord3W = new Coord(2,5);
         Coord coord4W = new Coord(3,5);
 
-        ChessBoardValidator.blackOn00 = true;
+        ChessBoardValidator.whiteOn00 = true;
 
         assertFalse(isSingleForwardMove(coord1B, coord1B, TeamColor.BLACK));
 
@@ -160,7 +160,7 @@ public class ChessUtilityTest {
         assertFalse(isSingleForwardMove(coord2W, coord4W, TeamColor.WHITE));
         assertFalse(isSingleForwardMove(coord4W, coord2W, TeamColor.WHITE));
 
-        ChessBoardValidator.blackOn00 = false;
+        ChessBoardValidator.whiteOn00 = false;
 
         assertFalse(isSingleForwardMove(coord1B, coord1B, TeamColor.WHITE));
 
@@ -192,7 +192,7 @@ public class ChessUtilityTest {
         Coord coord3W = new Coord(4,4);
         Coord coord4W = new Coord(5,4);
 
-        ChessBoardValidator.blackOn00 = true;
+        ChessBoardValidator.whiteOn00 = true;
 
         assertFalse(isSoldierKillMove(coord1B, coord1B, TeamColor.BLACK));
 
@@ -211,7 +211,7 @@ public class ChessUtilityTest {
         assertFalse(isSoldierKillMove(coord2W, coord4W, TeamColor.WHITE));
         assertFalse(isSoldierKillMove(coord4W, coord2W, TeamColor.WHITE));
 
-        ChessBoardValidator.blackOn00 = false;
+        ChessBoardValidator.whiteOn00 = false;
 
         assertFalse(isSoldierKillMove(coord1B, coord1B, TeamColor.WHITE));
 

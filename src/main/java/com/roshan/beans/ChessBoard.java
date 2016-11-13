@@ -7,13 +7,15 @@ import com.roshan.pieces.AcChessPiece;
  */
 public class ChessBoard {
 
-    private static PieceLocation[][] chessBoardState;
+    private PieceLocation[][] chessBoardState;
 
-    public static PieceLocation[][] getChessBoardState() {
+    public PieceLocation[][] getChessBoardState() {
         return chessBoardState;
     }
 
-    public static boolean setChessBoardState(PieceLocation[][] chessBoardState) {
+    public boolean setChessBoardState(PieceLocation[][] chessBoardState) {
+
+        this.chessBoardState = new PieceLocation[8][8];
 
         if (chessBoardState.length != 8) {
             return false;
@@ -22,13 +24,13 @@ public class ChessBoard {
                 if (chessBoardState[i].length != 8) {
                     return false;
                 }
+                System.arraycopy(chessBoardState[i], 0, this.chessBoardState[i], 0, 8);
             }
         }
-        ChessBoard.chessBoardState = chessBoardState;
         return true;
     }
 
-    public static PieceLocation[] getAllPieceLocations(TeamColor team) {
+    public PieceLocation[] getAllPieceLocations(TeamColor team) {
         PieceLocation[] teamState = new PieceLocation[16];
         int k=0;
 
@@ -42,5 +44,13 @@ public class ChessBoard {
             }
         }
         return teamState;
+    }
+
+    public PieceLocation getPieceAtLocation(Coord location) {
+        return chessBoardState[location.getX()][location.getY()];
+    }
+
+    public void setPieceAtLocation(PieceLocation pieceLocation, Coord location) {
+        chessBoardState[location.getX()][location.getY()] = pieceLocation;
     }
 }

@@ -1,12 +1,12 @@
 package com.roshan.pieces;
 
-import com.roshan.exception.InvalidCoordException;
-import com.roshan.beans.ChessBoard;
 import com.roshan.beans.Coord;
 import com.roshan.beans.PieceLocation;
 import com.roshan.beans.TeamColor;
+import com.roshan.exception.InvalidCoordException;
 import com.roshan.utils.ChessUtility;
 
+import static com.roshan.ChessBoardValidator.chessBoard;
 import static com.roshan.utils.ChessUtility.didIMove;
 import static com.roshan.utils.ChessUtility.isSingleMove;
 
@@ -29,7 +29,7 @@ public class King extends AcKingCheck {
     @Override
     public boolean isCheck(Coord position) {
 
-        PieceLocation[] otherTeamPieceLocations = ChessBoard.getAllPieceLocations(ChessUtility.otherTeamColor(this.getTeamColor()));
+        PieceLocation[] otherTeamPieceLocations = chessBoard.getAllPieceLocations(ChessUtility.otherTeamColor(this.getTeamColor()));
         for (PieceLocation otherTeamPieceLocation : otherTeamPieceLocations) {
             AcChessPiece currentPieceType = otherTeamPieceLocation.getPieceType();
 
@@ -58,7 +58,7 @@ public class King extends AcKingCheck {
     }
 
     private Coord[] validMovesForKing(Coord location) throws InvalidCoordException {
-        Coord[] possibleMoves = null;
+        Coord[] possibleMoves = new Coord[8];
         int k=0;
 
         int currentX = location.getX();
