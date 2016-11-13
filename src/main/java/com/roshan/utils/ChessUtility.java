@@ -1,11 +1,12 @@
 package com.roshan.utils;
 
-import com.roshan.ChessBoardValidator;
 import com.roshan.beans.Coord;
 import com.roshan.beans.PieceLocation;
 import com.roshan.beans.TeamColor;
+import com.roshan.exception.InvalidCoordException;
 import com.roshan.pieces.AcChessPiece;
 
+import static com.roshan.ChessBoardValidator.blackOn00;
 import static java.lang.Math.*;
 
 /**
@@ -46,7 +47,7 @@ public class ChessUtility {
     }
 
     public static boolean isDoubleForwardMove(Coord A, Coord B, TeamColor side) {
-        if (ChessBoardValidator.blackOn00) {
+        if (blackOn00) {
             if (side == TeamColor.BLACK) {
                 return (A.getY() == 1 && B.getY() == 3) && (A.getX() == B.getX());
             } else if (side == TeamColor.WHITE) {
@@ -66,7 +67,7 @@ public class ChessUtility {
     }
 
     public static boolean isSingleForwardMove(Coord A, Coord B, TeamColor side) {
-        if (ChessBoardValidator.blackOn00) {
+        if (blackOn00) {
             if (side == TeamColor.BLACK) {
                 return (B.getY() - A.getY() == 1) && (A.getX() == B.getX());
             } else if (side == TeamColor.WHITE) {
@@ -86,7 +87,7 @@ public class ChessUtility {
     }
 
     public static boolean isSoldierKillMove(Coord A, Coord B, TeamColor side) {
-        if (ChessBoardValidator.blackOn00) {
+        if (blackOn00) {
             if (side == TeamColor.BLACK) {
                 return didIMove(A, B) && (B.getY() - A.getY() == abs(B.getX() - A.getX()));
             } else if (side == TeamColor.WHITE) {
@@ -126,9 +127,28 @@ public class ChessUtility {
             System.out.print("|");
             for(int j=0; j<8; j++) {
                 AcChessPiece currentPiece = chessBoardState[i][j].getPieceType();
-                System.out.print(currentPiece.toString() + "|");
+
+                Coord currentCoord = null;
+                try {
+                    currentCoord = new Coord(i, j);
+                } catch (InvalidCoordException ice) {
+                    System.out.println("Invalid coordinates used! " + ice.getMessage());
+                }
+
+                if (isBlackSquare(currentCoord)) {
+                    System.out.print(currentPiece.toString() + "|");
+                } else {
+                    System.out.print(currentPiece.toString().replace(' ', '.') + "|");
+                }
             }
             System.out.println("\n---------------------------------");
         }
+    }
+
+    private static boolean isBlackSquare(Coord currentCoord) {
+        if ((currentCoord.getX() + currentCoord.getY())%2 == 0)
+            return blackOn00;
+        else
+            return !blackOn00;
     }
 }
