@@ -1,4 +1,4 @@
-package com.roshan.testUtils;
+package com.roshan.utils;
 
 import com.roshan.exception.InvalidCoordException;
 import com.roshan.beans.Coord;
@@ -12,7 +12,7 @@ import static java.lang.Math.floor;
 /**
  * Utility methods used on the tests for Chess board
  */
-public class ChessTestUtility {
+public class ChessBoardUtility {
 
     public static PieceLocation[][] getInitialChessBoardState(boolean blackon00) throws InvalidCoordException {
         PieceLocation[][] initialChessBoard = initializeChessBoard();
