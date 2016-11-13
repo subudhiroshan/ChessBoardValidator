@@ -120,13 +120,15 @@ public class ChessUtility {
     }
 
     public static void printChessBoard(PieceLocation[][] chessBoardState) {
+        System.out.println("---------------------------------");
+
         for(int i=0; i<8; i++) {
             System.out.print("|");
             for(int j=0; j<8; j++) {
                 AcChessPiece currentPiece = chessBoardState[i][j].getPieceType();
                 System.out.print(currentPiece.toString() + "|");
             }
-            System.out.println();
+            System.out.println("\n---------------------------------");
         }
     }
 }
