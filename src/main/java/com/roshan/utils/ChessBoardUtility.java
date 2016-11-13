@@ -18,15 +18,15 @@ public class ChessBoardUtility {
         PieceLocation[][] initialChessBoard = initializeChessBoard();
 
         if (blackon00) {
-            initialChessBoard[0] = placeNonSoldiersInOneRow(0, TeamColor.BLACK, true);
+            initialChessBoard[0] = placeNonSoldiersInOneRow(0, TeamColor.BLACK);
             initialChessBoard[1] = placeAllSoldiersInOneRow(1, TeamColor.BLACK);
             initialChessBoard[6] = placeAllSoldiersInOneRow(6, TeamColor.WHITE);
-            initialChessBoard[7] = placeNonSoldiersInOneRow(7, TeamColor.WHITE, true);
+            initialChessBoard[7] = placeNonSoldiersInOneRow(7, TeamColor.WHITE);
         } else {
-            initialChessBoard[0] = placeNonSoldiersInOneRow(0, TeamColor.WHITE, false);
+            initialChessBoard[0] = placeNonSoldiersInOneRow(0, TeamColor.WHITE);
             initialChessBoard[1] = placeAllSoldiersInOneRow(1, TeamColor.WHITE);
             initialChessBoard[6] = placeAllSoldiersInOneRow(6, TeamColor.BLACK);
-            initialChessBoard[7] = placeNonSoldiersInOneRow(7, TeamColor.BLACK, false);
+            initialChessBoard[7] = placeNonSoldiersInOneRow(7, TeamColor.BLACK);
         }
         return initialChessBoard;
     }
@@ -66,7 +66,7 @@ public class ChessBoardUtility {
         return soldierRow;
     }
 
-    private static PieceLocation[] placeNonSoldiersInOneRow(int rowNum, TeamColor teamColor, boolean blackOn00) throws InvalidCoordException {
+    private static PieceLocation[] placeNonSoldiersInOneRow(int rowNum, TeamColor teamColor) throws InvalidCoordException {
         PieceLocation[] nonSoldierRow = new PieceLocation[8];
 
         //initializing all the com.roshan.pieces
@@ -105,45 +105,15 @@ public class ChessBoardUtility {
                     nonSoldierRow[i] = nonSoldierSpot;
                     break;
                 case 0 :
-                    PieceLocation nonSoldierSpotKing = new PieceLocation();
                     PieceLocation nonSoldierSpotQueen = new PieceLocation();
-                    if (blackOn00) {
-                        if (teamColor.equals(TeamColor.BLACK)) {
-                            nonSoldierSpotQueen.setPieceType(aQueen);
-                            nonSoldierSpotQueen.setLocation(new Coord(3, rowNum));
-                            nonSoldierRow[3] = nonSoldierSpotQueen;
+                    nonSoldierSpotQueen.setPieceType(aQueen);
+                    nonSoldierSpotQueen.setLocation(new Coord(3, rowNum));
+                    nonSoldierRow[3] = nonSoldierSpotQueen;
 
-                            nonSoldierSpotKing.setPieceType(aKing);
-                            nonSoldierSpotKing.setLocation(new Coord(4, rowNum));
-                            nonSoldierRow[4] = nonSoldierSpotKing;
-                        } else {
-                            nonSoldierSpotQueen.setPieceType(aQueen);
-                            nonSoldierSpotQueen.setLocation(new Coord(4, rowNum));
-                            nonSoldierRow[4] = nonSoldierSpotQueen;
-
-                            nonSoldierSpotKing.setPieceType(aKing);
-                            nonSoldierSpotKing.setLocation(new Coord(3, rowNum));
-                            nonSoldierRow[3] = nonSoldierSpotKing;
-                        }
-                    } else {
-                        if (teamColor.equals(TeamColor.WHITE)) {
-                            nonSoldierSpotQueen.setPieceType(aQueen);
-                            nonSoldierSpotQueen.setLocation(new Coord(3, rowNum));
-                            nonSoldierRow[3] = nonSoldierSpotQueen;
-
-                            nonSoldierSpotKing.setPieceType(aKing);
-                            nonSoldierSpotKing.setLocation(new Coord(4, rowNum));
-                            nonSoldierRow[4] = nonSoldierSpotKing;
-                        } else {
-                            nonSoldierSpotQueen.setPieceType(aQueen);
-                            nonSoldierSpotQueen.setLocation(new Coord(4, rowNum));
-                            nonSoldierRow[4] = nonSoldierSpotQueen;
-
-                            nonSoldierSpotKing.setPieceType(aKing);
-                            nonSoldierSpotKing.setLocation(new Coord(3, rowNum));
-                            nonSoldierRow[3] = nonSoldierSpotKing;
-                        }
-                    }
+                    PieceLocation nonSoldierSpotKing = new PieceLocation();
+                    nonSoldierSpotKing.setPieceType(aKing);
+                    nonSoldierSpotKing.setLocation(new Coord(4, rowNum));
+                    nonSoldierRow[4] = nonSoldierSpotKing;
                     break;
             }
         }
