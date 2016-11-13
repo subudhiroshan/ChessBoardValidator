@@ -4,7 +4,7 @@ import com.roshan.beans.ChessBoard;
 import com.roshan.beans.Coord;
 import com.roshan.beans.PieceLocation;
 import com.roshan.exception.InvalidCoordException;
-import com.roshan.pieces.King;
+import com.roshan.pieces.EmptyPiece;
 import com.roshan.utils.ChessBoardUtility;
 import com.roshan.utils.ChessUtility;
 
@@ -36,15 +36,23 @@ public class ChessBoardValidator {
             Coord endCoord = coordFromString(endLoc);
 
             if (identifiedPiece.getPieceType().validateMove(startCoord, endCoord)) {
+                System.out.println("Valid move. Testing for checkmate...");
                 identifiedPiece.setLocation(endCoord);
-                chessBoard.setPieceAtLocation(identifiedPiece, endCoord);
+                PieceLocation emptyPiece = new PieceLocation();
+                emptyPiece.setPieceType(new EmptyPiece());
+                emptyPiece.setLocation(startCoord);
+                chessBoard.setPieceAtLocation(emptyPiece);
+                chessBoard.setPieceAtLocation(identifiedPiece);
 
-                if (checkmateOfOtherKing(identifiedPiece)) {
-                    System.out.println("CheckMate. You Win! Congratulations!!!");
-                    System.exit(0);
-                }
-
+//                if (chessBoard.isCheckmateOfOtherKing(identifiedPiece)) {
+//                    System.out.println("CheckMate. You Win! Congratulations!!!");
+//                    System.exit(0);
+//                }
+            } else {
+                System.out.println("Invalid move. Try again!");
             }
+
+            ChessUtility.printChessBoard(chessBoard);
 
         } catch (InvalidCoordException ice) {
             System.out.println("Invalid coordinates used! " + ice.getMessage());
@@ -53,12 +61,6 @@ public class ChessBoardValidator {
         catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private static boolean checkmateOfOtherKing(PieceLocation identifiedPiece) throws InvalidCoordException {
-        King otherKing = new King();
-        otherKing.setTeamColor(ChessUtility.otherTeamColor(identifiedPiece.getPieceType().getTeamColor()));
-        return otherKing.isCheckMate(identifiedPiece.getLocation());
     }
 
     private static Coord coordFromString(String coordString) throws InvalidCoordException {

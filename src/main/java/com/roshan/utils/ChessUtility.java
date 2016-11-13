@@ -121,7 +121,7 @@ public class ChessUtility {
     }
 
     public static void printChessBoard(ChessBoard chessBoard) {
-        System.out.println("Y\\X 0   1   2   3   4   5   6   7 ");
+        System.out.println("X\\Y 0   1   2   3   4   5   6   7 ");
         System.out.println("-----------------------------------");
 
         for(int i=0; i<8; i++) {
