@@ -71,7 +71,7 @@ public class ChessBoard {
             for(int j=0; j<8; j++) {
                 PieceLocation currentPieceLocation = chessBoardState[i][j];
                 AcChessPiece currentPieceType = currentPieceLocation.getPieceType();
-                if (currentPieceType.equals(King.class) &&
+                if (currentPieceType instanceof King &&
                         otherTeamColor.equals(currentPieceType.getTeamColor())) {
                     return new Coord(i, j);
                 }

@@ -34,11 +34,11 @@ public class ChessBoardValidator {
                     System.out.println("Start location(x,y) - ");
                     String startLoc = scanner.nextLine();
                     Coord startCoord = coordFromString(startLoc);
-                    PieceLocation identifiedPiece = chessBoard.getPieceAtLocation(startCoord);
-                    AcChessPiece identifiedPiecetType = identifiedPiece.getPieceType();
-                    System.out.println("Identified piece is " + identifiedPiecetType.toString());
+                    PieceLocation startPiece = chessBoard.getPieceAtLocation(startCoord);
+                    AcChessPiece startPiecetType = startPiece.getPieceType();
+                    System.out.println("Moving [" + startPiecetType.toString() + "] ...");
 
-                    if (!identifiedPiecetType.getTeamColor().equals(teamTurn)) {
+                    if (!startPiecetType.getTeamColor().equals(teamTurn) || startPiecetType instanceof EmptyPiece) {
                         System.out.println(String.format("Wrong move. Please move a %s piece!\n", teamTurn.toString()));
                         continue;
                     }
@@ -46,18 +46,23 @@ public class ChessBoardValidator {
                     System.out.println("End location(x,y) - ");
                     String endLoc = scanner.nextLine();
                     Coord endCoord = coordFromString(endLoc);
+                    PieceLocation endPiece = chessBoard.getPieceAtLocation(endCoord);
+                    AcChessPiece endPiecetType = endPiece.getPieceType();
 
-                    if (identifiedPiece.getPieceType().validateMove(startCoord, endCoord)) {
+                    if (startPiecetType.validateMove(startCoord, endCoord)) {
                         System.out.println("Valid move.\n");
+                        if (!(endPiecetType instanceof EmptyPiece)) {
+                            System.out.println("Awesome! [" + startPiecetType.toString() + "] killed [" + endPiecetType.toString() + "]");
+                        }
                         teamTurn = ChessUtility.otherTeamColor(teamTurn);
-                        identifiedPiece.setLocation(endCoord);
+                        startPiece.setLocation(endCoord);
                         PieceLocation emptyPiece = new PieceLocation();
                         emptyPiece.setPieceType(new EmptyPiece());
                         emptyPiece.setLocation(startCoord);
                         chessBoard.setPieceAtLocation(emptyPiece);
-                        chessBoard.setPieceAtLocation(identifiedPiece);
+                        chessBoard.setPieceAtLocation(startPiece);
 
-//                if (chessBoard.isCheckmateOfOtherKing(identifiedPiece)) {
+//                if (chessBoard.isCheckmateOfOtherKing(startPiece)) {
 //                    System.out.println("CheckMate. You Win! Congratulations!!!");
 //                    System.exit(0);
 //                }

@@ -5,8 +5,10 @@ import com.roshan.beans.Coord;
 import com.roshan.beans.TeamColor;
 import com.roshan.exception.InvalidCoordException;
 import com.roshan.pieces.AcChessPiece;
+import com.roshan.pieces.EmptyPiece;
 
 import static com.roshan.ChessBoardValidator.blackOn00;
+import static com.roshan.ChessBoardValidator.chessBoard;
 import static java.lang.Math.*;
 
 /**
@@ -47,6 +49,11 @@ public class ChessUtility {
     }
 
     public static boolean isDoubleForwardMove(Coord A, Coord B, TeamColor side) {
+
+        if (!(chessBoard.getPieceAtLocation(B).getPieceType() instanceof EmptyPiece)) {
+            return false;
+        }
+
         if (blackOn00) {
             if (side == TeamColor.BLACK) {
                 return (A.getX() == 1 && B.getX() == 3) && (A.getY() == B.getY());
@@ -67,6 +74,11 @@ public class ChessUtility {
     }
 
     public static boolean isSingleForwardMove(Coord A, Coord B, TeamColor side) {
+
+        if (!(chessBoard.getPieceAtLocation(B).getPieceType() instanceof EmptyPiece)) {
+            return false;
+        }
+
         if (blackOn00) {
             if (side == TeamColor.BLACK) {
                 return (B.getX() - A.getX() == 1) && (A.getY() == B.getY());
@@ -87,6 +99,11 @@ public class ChessUtility {
     }
 
     public static boolean isSoldierKillMove(Coord A, Coord B, TeamColor side) {
+
+        if (chessBoard.getPieceAtLocation(B).getPieceType() instanceof EmptyPiece) {
+            return false;
+        }
+
         if (blackOn00) {
             if (side == TeamColor.BLACK) {
                 return didIMove(A, B) && (B.getX() - A.getX() == abs(B.getY() - A.getY()));
