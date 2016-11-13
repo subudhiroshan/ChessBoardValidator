@@ -26,8 +26,8 @@ public class Soldier extends AcChessPiece {
 
     @Override
     public boolean validateMove(Coord start, Coord end) {
-        return didIMove(start, end) && isDoubleForwardMove(start, end, teamColor) ||
-                isSingleForwardMove(start, end, teamColor) || isSoldierKillMove(start, end, teamColor);
+        return didIMove(start, end) && (isDoubleForwardMove(start, end, teamColor) ||
+                isSingleForwardMove(start, end, teamColor) || isSoldierKillMove(start, end, teamColor));
     }
 
     @Override

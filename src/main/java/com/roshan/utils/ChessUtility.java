@@ -49,18 +49,18 @@ public class ChessUtility {
     public static boolean isDoubleForwardMove(Coord A, Coord B, TeamColor side) {
         if (blackOn00) {
             if (side == TeamColor.BLACK) {
-                return (A.getY() == 1 && B.getY() == 3) && (A.getX() == B.getX());
+                return (A.getX() == 1 && B.getX() == 3) && (A.getY() == B.getY());
             } else if (side == TeamColor.WHITE) {
-                return (A.getY() == 6 && B.getY() == 4) && (A.getX() == B.getX());
+                return (A.getX() == 6 && B.getX() == 4) && (A.getY() == B.getY());
             } else {
                 return false;
             }
         }
 
         if (side == TeamColor.BLACK) {
-            return (A.getY() == 6 && B.getY() == 4) && (A.getX() == B.getX());
+            return (A.getX() == 6 && B.getX() == 4) && (A.getY() == B.getY());
         } else if (side == TeamColor.WHITE) {
-            return (A.getY() == 1 && B.getY() == 3) && (A.getX() == B.getX());
+            return (A.getX() == 1 && B.getX() == 3) && (A.getY() == B.getY());
         } else {
             return false;
         }
@@ -69,18 +69,18 @@ public class ChessUtility {
     public static boolean isSingleForwardMove(Coord A, Coord B, TeamColor side) {
         if (blackOn00) {
             if (side == TeamColor.BLACK) {
-                return (B.getY() - A.getY() == 1) && (A.getX() == B.getX());
+                return (B.getX() - A.getX() == 1) && (A.getY() == B.getY());
             } else if (side == TeamColor.WHITE) {
-                return (B.getY() - A.getY() == -1) && (A.getX() == B.getX());
+                return (B.getX() - A.getX() == -1) && (A.getY() == B.getY());
             } else {
                 return false;
             }
         }
 
         if (side == TeamColor.BLACK) {
-            return (B.getY() - A.getY() == -1) && (A.getX() == B.getX());
+            return (B.getX() - A.getX() == -1) && (A.getY() == B.getY());
         } else if (side == TeamColor.WHITE) {
-            return (B.getY() - A.getY() == 1) && (A.getX() == B.getX());
+            return (B.getX() - A.getX() == 1) && (A.getY() == B.getY());
         } else {
             return false;
         }
@@ -89,18 +89,18 @@ public class ChessUtility {
     public static boolean isSoldierKillMove(Coord A, Coord B, TeamColor side) {
         if (blackOn00) {
             if (side == TeamColor.BLACK) {
-                return didIMove(A, B) && (B.getY() - A.getY() == abs(B.getX() - A.getX()));
+                return didIMove(A, B) && (B.getX() - A.getX() == abs(B.getY() - A.getY()));
             } else if (side == TeamColor.WHITE) {
-                return didIMove(A, B) && (B.getY() - A.getY() == negateExact(abs(B.getX() - A.getX())));
+                return didIMove(A, B) && (B.getX() - A.getX() == negateExact(abs(B.getY() - A.getY())));
             } else {
                 return false;
             }
         }
 
         if (side == TeamColor.BLACK) {
-            return didIMove(A, B) && (B.getY() - A.getY() == negateExact(abs(B.getX() - A.getX())));
+            return didIMove(A, B) && (B.getX() - A.getX() == negateExact(abs(B.getY() - A.getY())));
         } else if (side == TeamColor.WHITE) {
-            return didIMove(A, B) && (B.getY() - A.getY() == abs(B.getX() - A.getX()));
+            return didIMove(A, B) && (B.getX() - A.getX() == abs(B.getY() - A.getY()));
         } else {
             return false;
         }
