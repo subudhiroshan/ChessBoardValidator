@@ -36,7 +36,7 @@ public class ChessBoardValidator {
                     Coord startCoord = coordFromString(startLoc);
                     PieceLocation startPiece = chessBoard.getPieceAtLocation(startCoord);
                     AcChessPiece startPiecetType = startPiece.getPieceType();
-                    System.out.println("Moving [" + startPiecetType.toString() + "] ...");
+                    System.out.println("Moving [" + startPiecetType.toString() + "]...");
 
                     if (!startPiecetType.getTeamColor().equals(teamTurn) || startPiecetType instanceof EmptyPiece) {
                         System.out.println(String.format("Wrong move. Please move a %s piece!\n", teamTurn.toString()));
@@ -49,7 +49,7 @@ public class ChessBoardValidator {
                     PieceLocation endPiece = chessBoard.getPieceAtLocation(endCoord);
                     AcChessPiece endPiecetType = endPiece.getPieceType();
 
-                    if (startPiecetType.validateMove(startCoord, endCoord)) {
+                    if (!startPiecetType.getTeamColor().equals(endPiecetType.getTeamColor()) && startPiecetType.validateMove(startCoord, endCoord)) {
                         System.out.println("Valid move.\n");
                         if (!(endPiecetType instanceof EmptyPiece)) {
                             System.out.println("Awesome! [" + startPiecetType.toString() + "] killed [" + endPiecetType.toString() + "]");
