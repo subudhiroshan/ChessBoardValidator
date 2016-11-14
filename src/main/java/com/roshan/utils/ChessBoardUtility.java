@@ -34,7 +34,7 @@ public class ChessBoardUtility {
     private static PieceLocation[][] initializeChessBoard() throws InvalidCoordException {
         PieceLocation[][] blankChessBoard = new PieceLocation[8][8];
 
-        //initialize board with empty com.roshan.pieces
+        //initialize board with empty pieces
         for(int i=0; i<8; i++) {
             for(int j=0; j<8; j++) {
                 Coord iAmHere = new Coord(i, j);
@@ -69,7 +69,6 @@ public class ChessBoardUtility {
     private static PieceLocation[] placeNonSoldiersInOneRow(int rowNum, TeamColor teamColor) throws InvalidCoordException {
         PieceLocation[] nonSoldierRow = new PieceLocation[8];
 
-        //initializing all the com.roshan.pieces
         Elephant anElephant = new Elephant();
         anElephant.setTeamColor(teamColor);
 
