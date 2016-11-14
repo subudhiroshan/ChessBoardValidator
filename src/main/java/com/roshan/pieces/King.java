@@ -46,6 +46,11 @@ public class King extends AcKingCheck {
 
         int checkCount = 0;
         for (Coord possibleLocation : validMovesForKing(position)) {
+
+            if (null == possibleLocation) {
+                continue;
+            }
+
             if (isCheck(possibleLocation)) {
                 checkCount ++;
             }
@@ -58,7 +63,7 @@ public class King extends AcKingCheck {
         return didIMove(start, end) && isSingleMove(start, end);
     }
 
-    private Coord[] validMovesForKing(Coord location) throws InvalidCoordException {
+    private Coord[] validMovesForKing(Coord location){
         Coord[] possibleMoves = new Coord[8];
         int k=0;
 
@@ -67,10 +72,13 @@ public class King extends AcKingCheck {
 
         for(int i=currentX-1; i<currentX+2; i++) {
             for(int j=currentY-1; j<currentY+2; j++) {
-                Coord currentLocation = new Coord(i,j);
-                if (currentLocation.validateCoord()) {
-                    possibleMoves[k++] = currentLocation;
+                Coord currentLocation;
+                try {
+                    currentLocation = new Coord(i,j);
+                } catch (InvalidCoordException ice) {
+                    continue;
                 }
+                possibleMoves[k++] = currentLocation;
             }
         }
         return possibleMoves;

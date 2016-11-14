@@ -62,10 +62,10 @@ public class ChessBoardValidator {
                         chessBoard.setPieceAtLocation(emptyPiece);
                         chessBoard.setPieceAtLocation(startPiece);
 
-//                if (chessBoard.isCheckmateOfOtherKing(startPiece)) {
-//                    System.out.println("CheckMate. You Win! Congratulations!!!");
-//                    System.exit(0);
-//                }
+                        if (chessBoard.isCheckmateOfOtherKing(startPiecetType.getTeamColor())) {
+                            System.out.println("CheckMate. You Win! Congratulations!!!");
+                            System.exit(0);
+                        }
                     } else {
                         System.out.println("Invalid move. Try again!\n");
                     }

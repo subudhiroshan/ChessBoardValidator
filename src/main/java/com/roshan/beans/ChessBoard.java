@@ -4,9 +4,9 @@ import com.roshan.exception.InvalidCoordException;
 import com.roshan.pieces.AcChessPiece;
 import com.roshan.pieces.EmptyPiece;
 import com.roshan.pieces.King;
-import com.roshan.utils.ChessUtility;
 
 import static com.roshan.ChessBoardValidator.chessBoard;
+import static com.roshan.utils.ChessUtility.otherTeamColor;
 import static java.lang.Math.abs;
 
 /**
@@ -62,15 +62,15 @@ public class ChessBoard {
         chessBoardState[location.getX()][location.getY()] = pieceLocation;
     }
 
-    public boolean isCheckmateOfOtherKing(PieceLocation identifiedPiece) throws InvalidCoordException {
-        Coord otherKingCoord = otherKingLocation(identifiedPiece);
+    public boolean isCheckmateOfOtherKing(TeamColor teamColor) throws InvalidCoordException {
+        Coord otherKingCoord = otherKingLocation(teamColor);
         King otherKing = new King();
-        otherKing.setTeamColor(ChessUtility.otherTeamColor(identifiedPiece.getPieceType().getTeamColor()));
+        otherKing.setTeamColor(otherTeamColor(teamColor));
         return otherKing.isCheckMate(otherKingCoord);
     }
 
-    private Coord otherKingLocation(PieceLocation pieceLocation) throws InvalidCoordException {
-        TeamColor otherTeamColor = ChessUtility.otherTeamColor(pieceLocation.getPieceType().getTeamColor());
+    private Coord otherKingLocation(TeamColor teamColor) throws InvalidCoordException {
+        TeamColor otherTeamColor = otherTeamColor(teamColor);
         for(int i=0; i<8; i++) {
             for(int j=0; j<8; j++) {
                 PieceLocation currentPieceLocation = chessBoardState[i][j];
