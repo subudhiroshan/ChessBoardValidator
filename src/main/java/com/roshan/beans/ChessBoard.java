@@ -62,21 +62,28 @@ public class ChessBoard {
         chessBoardState[location.getX()][location.getY()] = pieceLocation;
     }
 
+    public boolean isCheckOfYourKing(TeamColor teamColor) throws InvalidCoordException {
+        Coord kingCoord = kingLocation(teamColor);
+        King king = new King();
+        king.setTeamColor(teamColor);
+        return king.isCheck(kingCoord);
+    }
+
     public boolean isCheckmateOfOtherKing(TeamColor teamColor) throws InvalidCoordException {
-        Coord otherKingCoord = otherKingLocation(teamColor);
+        TeamColor otherTeamColor = otherTeamColor(teamColor);
+        Coord otherKingCoord = kingLocation(otherTeamColor);
         King otherKing = new King();
         otherKing.setTeamColor(otherTeamColor(teamColor));
         return otherKing.isCheckMate(otherKingCoord);
     }
 
-    private Coord otherKingLocation(TeamColor teamColor) throws InvalidCoordException {
-        TeamColor otherTeamColor = otherTeamColor(teamColor);
+    private Coord kingLocation(TeamColor teamColor) throws InvalidCoordException {
         for(int i=0; i<8; i++) {
             for(int j=0; j<8; j++) {
                 PieceLocation currentPieceLocation = chessBoardState[i][j];
                 AcChessPiece currentPieceType = currentPieceLocation.getPieceType();
                 if (currentPieceType instanceof King &&
-                        otherTeamColor.equals(currentPieceType.getTeamColor())) {
+                        teamColor.equals(currentPieceType.getTeamColor())) {
                     return new Coord(i, j);
                 }
             }

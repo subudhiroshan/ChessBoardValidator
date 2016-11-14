@@ -52,6 +52,8 @@ public class ChessBoardValidator {
 
                     if ((startPiecetType instanceof King) && ((King) startPiecetType).isCheck(endCoord)) {
                         System.out.println("Invalid move. King is in Check. Try again!\n");
+                    } else if (chessBoard.isCheckOfYourKing(startPiecetType.getTeamColor())) {
+                        System.out.println("Invalid move. King is in Check. Try again!\n");
                     } else if (!startPiecetType.getTeamColor().equals(endPiecetType.getTeamColor()) && startPiecetType.validateMove(startCoord, endCoord)) {
                         System.out.println("Valid move.\n");
                         if (!(endPiecetType instanceof EmptyPiece)) {
