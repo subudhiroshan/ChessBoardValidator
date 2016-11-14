@@ -7,6 +7,7 @@ import com.roshan.beans.TeamColor;
 import com.roshan.exception.InvalidCoordException;
 import com.roshan.pieces.AcChessPiece;
 import com.roshan.pieces.EmptyPiece;
+import com.roshan.pieces.King;
 import com.roshan.utils.ChessBoardUtility;
 import com.roshan.utils.ChessUtility;
 
@@ -49,7 +50,9 @@ public class ChessBoardValidator {
                     PieceLocation endPiece = chessBoard.getPieceAtLocation(endCoord);
                     AcChessPiece endPiecetType = endPiece.getPieceType();
 
-                    if (!startPiecetType.getTeamColor().equals(endPiecetType.getTeamColor()) && startPiecetType.validateMove(startCoord, endCoord)) {
+                    if ((startPiecetType instanceof King) && ((King) startPiecetType).isCheck(endCoord)) {
+                        System.out.println("Invalid move. King is in Check. Try again!\n");
+                    } else if (!startPiecetType.getTeamColor().equals(endPiecetType.getTeamColor()) && startPiecetType.validateMove(startCoord, endCoord)) {
                         System.out.println("Valid move.\n");
                         if (!(endPiecetType instanceof EmptyPiece)) {
                             System.out.println("Awesome! [" + startPiecetType.toString() + "] killed [" + endPiecetType.toString() + "]");
@@ -64,6 +67,7 @@ public class ChessBoardValidator {
 
                         if (chessBoard.isCheckmateOfOtherKing(startPiecetType.getTeamColor())) {
                             System.out.println("CheckMate. You Win! Congratulations!!!");
+                            ChessUtility.printChessBoard(chessBoard);
                             System.exit(0);
                         }
                     } else {

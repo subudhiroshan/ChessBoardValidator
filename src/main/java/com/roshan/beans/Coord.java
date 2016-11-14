@@ -38,4 +38,20 @@ public class Coord {
     public String toString() {
         return "(x=" + x + ", y=" + y + ")";
     }
+
+    @Override
+    public boolean equals(Object otherObject) {
+        if (this == otherObject) return true;
+        if (otherObject == null || getClass() != otherObject.getClass()) return false;
+
+        Coord otherCoord = (Coord) otherObject;
+
+        if (x != otherCoord.x) return false;
+        return y == otherCoord.y;
+    }
+
+    @Override
+    public int hashCode() {
+        return 31 + x + y;
+    }
 }

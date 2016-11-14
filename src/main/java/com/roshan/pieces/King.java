@@ -32,6 +32,9 @@ public class King extends AcKingCheck {
 
         PieceLocation[] otherTeamPieceLocations = chessBoard.getAllPieceLocations(ChessUtility.otherTeamColor(this.getTeamColor()));
         for (PieceLocation otherTeamPieceLocation : otherTeamPieceLocations) {
+
+            if (null == otherTeamPieceLocation) continue;
+
             AcChessPiece currentPieceType = otherTeamPieceLocation.getPieceType();
 
             if (currentPieceType.validateMove(otherTeamPieceLocation.getLocation() ,position)) {
@@ -48,6 +51,7 @@ public class King extends AcKingCheck {
         for (Coord possibleLocation : validMovesForKing(position)) {
 
             if (null == possibleLocation) {
+                checkCount ++;
                 continue;
             }
 
@@ -78,7 +82,9 @@ public class King extends AcKingCheck {
                 } catch (InvalidCoordException ice) {
                     continue;
                 }
-                possibleMoves[k++] = currentLocation;
+                if (!(currentLocation.equals(location))){
+                    possibleMoves[k++] = currentLocation;
+                }
             }
         }
         return possibleMoves;
