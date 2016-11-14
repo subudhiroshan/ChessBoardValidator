@@ -3,6 +3,7 @@ package com.roshan.pieces;
 import com.roshan.beans.Coord;
 import com.roshan.beans.TeamColor;
 
+import static com.roshan.beans.ChessBoard.isUnblockedPath;
 import static com.roshan.utils.ChessUtility.didIMove;
 import static com.roshan.utils.ChessUtility.isDiagonalMove;
 
@@ -18,13 +19,14 @@ public class Minister extends AcChessPiece {
         return teamColor;
     }
 
+    @Override
     public void setTeamColor(TeamColor teamColor) {
         this.teamColor = teamColor;
     }
 
     @Override
     public boolean validateMove(Coord start, Coord end) {
-        return didIMove(start, end) && isDiagonalMove(start, end);
+        return didIMove(start, end) && isDiagonalMove(start, end) && isUnblockedPath(start, end);
     }
 
     @Override

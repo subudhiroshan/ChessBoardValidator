@@ -20,6 +20,7 @@ public class Soldier extends AcChessPiece {
         return teamColor;
     }
 
+    @Override
     public void setTeamColor(TeamColor teamColor) {
         this.teamColor = teamColor;
     }

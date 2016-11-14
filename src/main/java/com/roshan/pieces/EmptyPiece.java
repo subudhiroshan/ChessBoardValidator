@@ -15,6 +15,7 @@ public class EmptyPiece extends AcChessPiece {
         return teamColor;
     }
 
+    @Override
     public void setTeamColor(TeamColor teamColor) {
         this.teamColor = teamColor;
     }

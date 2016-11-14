@@ -22,6 +22,7 @@ public class King extends AcKingCheck {
         return teamColor;
     }
 
+    @Override
     public void setTeamColor(TeamColor teamColor) {
         this.teamColor = teamColor;
     }
