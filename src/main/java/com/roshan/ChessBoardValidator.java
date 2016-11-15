@@ -17,17 +17,24 @@ public class ChessBoardValidator {
 
     public static boolean blackOn00 = true;
     private static Scanner scanner = new Scanner(System.in);
-    public static ChessBoard chessBoard;
+    public static ChessBoard chessBoard = new ChessBoard();
+
+    public ChessBoardValidator() {
+        try {
+            chessBoard.setChessBoardState(ChessBoardUtility.getInitialChessBoardState(blackOn00));
+        } catch (InvalidCoordException ice) {
+            System.out.println("Invalid coordinates used! " + ice.getMessage());
+        }
+    }
 
     public static void main(String[] args) {
         TeamColor teamTurn = TeamColor.BLACK;
         System.out.println("Welcome to ChessBoardValidator!!!\n");
 
-        try {
-            chessBoard = new ChessBoard();
-            chessBoard.setChessBoardState(ChessBoardUtility.getInitialChessBoardState(blackOn00));
-            ChessUtility.printChessBoard(chessBoard);
+        ChessBoardValidator chessBoardValidator = new ChessBoardValidator();
 
+        try {
+            ChessUtility.printChessBoard(chessBoard);
             while (true) {
                 try {
 
