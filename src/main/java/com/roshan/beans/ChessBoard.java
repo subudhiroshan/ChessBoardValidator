@@ -27,11 +27,11 @@ public class ChessBoard {
         if (chessBoardState.length != 8) {
             return false;
         } else {
-            for(int i=0; i<8; i++) {
-                if (chessBoardState[i].length != 8) {
+            for(int x=0; x<8; x++) {
+                if (chessBoardState[x].length != 8) {
                     return false;
                 }
-                System.arraycopy(chessBoardState[i], 0, this.chessBoardState[i], 0, 8);
+                System.arraycopy(chessBoardState[x], 0, this.chessBoardState[x], 0, 8);
             }
         }
         return true;
@@ -41,12 +41,12 @@ public class ChessBoard {
         PieceLocation[] teamState = new PieceLocation[16];
         int k=0;
 
-        for(int i=0; i<8; i++) {
-            for(int j=0; j<8; j++) {
-                PieceLocation currentPieceLocation = chessBoardState[i][j];
+        for(int x=0; x<8; x++) {
+            for(int y=0; y<8; y++) {
+                PieceLocation currentPieceLocation = chessBoardState[x][y];
                 AcChessPiece currentPieceType = currentPieceLocation.getPieceType();
                 if (currentPieceType.getTeamColor().equals(team)) {
-                    teamState[k++] = chessBoardState[i][j];
+                    teamState[k++] = chessBoardState[x][y];
                 }
             }
         }
@@ -78,13 +78,13 @@ public class ChessBoard {
     }
 
     private Coord kingLocation(TeamColor teamColor) throws InvalidCoordException {
-        for(int i=0; i<8; i++) {
-            for(int j=0; j<8; j++) {
-                PieceLocation currentPieceLocation = chessBoardState[i][j];
+        for(int x=0; x<8; x++) {
+            for(int y=0; y<8; y++) {
+                PieceLocation currentPieceLocation = chessBoardState[x][y];
                 AcChessPiece currentPieceType = currentPieceLocation.getPieceType();
                 if (currentPieceType instanceof King &&
                         teamColor.equals(currentPieceType.getTeamColor())) {
-                    return new Coord(i, j);
+                    return new Coord(x, y);
                 }
             }
         }
@@ -100,16 +100,16 @@ public class ChessBoard {
         try {
             if (startX == endX) {
                 int modifierY = ((endY - startY) / abs(endY - startY));
-                for (int j = startY + modifierY; j != endY; j += modifierY) {
-                    Coord currentCoord = new Coord(endX, j);
+                for (int y = startY + modifierY; y != endY; y += modifierY) {
+                    Coord currentCoord = new Coord(endX, y);
                     if (!(chessBoard.getPieceAtLocation(currentCoord).getPieceType() instanceof EmptyPiece)) {
                         return false;
                     }
                 }
             } else if (startY == endY) {
                 int modifierX = ((endX - startX) / abs(endX - startX));
-                for (int i = startX + modifierX; i != endX; i += modifierX) {
-                    Coord currentCoord = new Coord(i, endY);
+                for (int x = startX + modifierX; x != endX; x += modifierX) {
+                    Coord currentCoord = new Coord(x, endY);
                     if (!(chessBoard.getPieceAtLocation(currentCoord).getPieceType() instanceof EmptyPiece)) {
                         return false;
                     }
@@ -117,9 +117,9 @@ public class ChessBoard {
             } else {
                 int modifierX = ((endX - startX) / abs(endX - startX));
                 int modifierY = ((endY - startY) / abs(endY - startY));
-                for (int i = startX + modifierX, j = startY + modifierY; i != endX && j != endY;
-                     i += modifierX, j += modifierY) {
-                    Coord currentCoord = new Coord(i, j);
+                for (int x = startX + modifierX, y = startY + modifierY; x != endX && y != endY;
+                     x += modifierX, y += modifierY) {
+                    Coord currentCoord = new Coord(x, y);
                     if (!(chessBoard.getPieceAtLocation(currentCoord).getPieceType() instanceof EmptyPiece)) {
                         return false;
                     }

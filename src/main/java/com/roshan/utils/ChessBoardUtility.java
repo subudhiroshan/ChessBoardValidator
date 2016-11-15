@@ -35,15 +35,15 @@ public class ChessBoardUtility {
         PieceLocation[][] blankChessBoard = new PieceLocation[8][8];
 
         //initialize board with empty pieces
-        for(int i=0; i<8; i++) {
-            for(int j=0; j<8; j++) {
-                Coord iAmHere = new Coord(i, j);
+        for(int x=0; x<8; x++) {
+            for(int y=0; y<8; y++) {
+                Coord iAmHere = new Coord(x, y);
 
                 PieceLocation blankSpot = new PieceLocation();
                 blankSpot.setPieceType(new EmptyPiece());
                 blankSpot.setLocation(iAmHere);
 
-                blankChessBoard[i][j] = blankSpot;
+                blankChessBoard[x][y] = blankSpot;
             }
         }
         return blankChessBoard;
@@ -52,8 +52,8 @@ public class ChessBoardUtility {
     private static PieceLocation[] placeAllSoldiersInOneRow(int rowNum, TeamColor teamColor) throws InvalidCoordException {
         PieceLocation[] soldierRow = new PieceLocation[8];
 
-        for(int i=0; i<8; i++) {
-            Coord iAmHere = new Coord(i, rowNum);
+        for(int x=0; x<8; x++) {
+            Coord iAmHere = new Coord(x, rowNum);
             Soldier aSoldier = new Soldier();
             aSoldier.setTeamColor(teamColor);
 
@@ -61,7 +61,7 @@ public class ChessBoardUtility {
             soldierSpot.setPieceType(aSoldier);
             soldierSpot.setLocation(iAmHere);
 
-            soldierRow[i] = soldierSpot;
+            soldierRow[x] = soldierSpot;
         }
         return soldierRow;
     }
@@ -84,24 +84,24 @@ public class ChessBoardUtility {
         King aKing = new King();
         aKing.setTeamColor(teamColor);
 
-        for (int i=0; i<8; i++) {
-            Coord iAmHere = new Coord(i, rowNum);
+        for (int x=0; x<8; x++) {
+            Coord iAmHere = new Coord(x, rowNum);
 
             PieceLocation nonSoldierSpot = new PieceLocation();
             nonSoldierSpot.setLocation(iAmHere);
 
-            switch ((int) floor(abs(3.5-i))) {
+            switch ((int) floor(abs(3.5-x))) {
                 case 3 :
                     nonSoldierSpot.setPieceType(anElephant);
-                    nonSoldierRow[i] = nonSoldierSpot;
+                    nonSoldierRow[x] = nonSoldierSpot;
                     break;
                 case 2 :
                     nonSoldierSpot.setPieceType(aHorse);
-                    nonSoldierRow[i] = nonSoldierSpot;
+                    nonSoldierRow[x] = nonSoldierSpot;
                     break;
                 case 1 :
                     nonSoldierSpot.setPieceType(aMinister);
-                    nonSoldierRow[i] = nonSoldierSpot;
+                    nonSoldierRow[x] = nonSoldierSpot;
                     break;
                 case 0 :
                     PieceLocation nonSoldierSpotQueen = new PieceLocation();

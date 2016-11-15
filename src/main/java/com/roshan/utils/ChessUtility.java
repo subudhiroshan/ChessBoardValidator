@@ -138,17 +138,17 @@ public class ChessUtility {
     }
 
     public static void printChessBoard(ChessBoard chessBoard) {
-        System.out.println("X\\Y 0   1   2   3   4   5   6   7 ");
-        System.out.println("-----------------------------------");
+        System.out.println("X\\Y 0   1   2   3   4   5   6   7 Y/X");
+        System.out.println("-------------------------------------");
 
-        for(int i=0; i<8; i++) {
-            System.out.print(i + " |");
-            for(int j=0; j<8; j++) {
-                AcChessPiece currentPiece = chessBoard.getChessBoardState()[i][j].getPieceType();
+        for (int x = 0; x < 8; x++) {
+            System.out.print(x + " |");
+            for (int y = 0; y < 8; y++) {
+                AcChessPiece currentPiece = chessBoard.getChessBoardState()[x][y].getPieceType();
 
                 Coord currentCoord = null;
                 try {
-                    currentCoord = new Coord(i, j);
+                    currentCoord = new Coord(x, y);
                 } catch (InvalidCoordException ice) {
                     System.out.println("Invalid coordinates used! " + ice.getMessage());
                 }
@@ -159,8 +159,11 @@ public class ChessUtility {
                     System.out.print(currentPiece.toString().replace(' ', '.') + "|");
                 }
             }
-            System.out.println("\n-----------------------------------");
-        }
+            System.out.print(" " + x);
+        System.out.println("\n-------------------------------------");
+    }
+            System.out.println("X/Y 0   1   2   3   4   5   6   7 Y\\X");
+            System.out.println("-------------------------------------");
     }
 
     private static boolean isBlackSquare(Coord currentCoord) {

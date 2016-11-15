@@ -74,11 +74,11 @@ public class King extends AcKingCheck {
         int currentX = location.getX();
         int currentY = location.getY();
 
-        for(int i=currentX-1; i<currentX+2; i++) {
-            for(int j=currentY-1; j<currentY+2; j++) {
+        for(int x=currentX-1; x<currentX+2; x++) {
+            for(int y=currentY-1; y<currentY+2; y++) {
                 Coord currentLocation;
                 try {
-                    currentLocation = new Coord(i,j);
+                    currentLocation = new Coord(x,y);
                 } catch (InvalidCoordException ice) {
                     continue;
                 }
